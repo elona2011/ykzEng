@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">ykzEng</string>
+    <string name="word_name">Word</string>
+    <string name="word_add">Add</string>
+    <string name="word_add_hint">Enter a new word</string>
+</resources>
