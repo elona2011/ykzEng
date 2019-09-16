@@ -3,4 +3,5 @@
     <string name="word_name">Word</string>
     <string name="word_add">Add</string>
     <string name="word_add_hint">Enter a new word</string>
+    <string name="recycler_item_pos">recycler_item_pos</string>
 </resources>
