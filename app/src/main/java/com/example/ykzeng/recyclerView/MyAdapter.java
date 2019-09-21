@@ -18,9 +18,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView textView;
+        public TextView tv_id;
+        public TextView tv_remember;
         public MyViewHolder(View v) {
             super(v);
             textView = v.findViewById(R.id.recycler_item);
+            tv_id = v.findViewById(R.id.re_id);
+            tv_remember=v.findViewById(R.id.re_remember);
         }
     }
 
@@ -44,7 +48,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.textView.setText(mDataset.get(position).get("name"));
-
+        holder.tv_id.setText(mDataset.get(position).get("id"));
+        holder.tv_remember.setText(mDataset.get(position).get("remember")+"/"+mDataset.get(position).get("forget"));
     }
 
     @Override

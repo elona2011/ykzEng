@@ -13,12 +13,12 @@ public class RecyclerItemClickListener extends RecyclerView.SimpleOnItemTouchLis
     private GestureDetector mGestureDetector;
     private static final String TAG = RecyclerItemClickListener.class.getName();
 
-    public interface Handler{
-        public void onItemClick(MotionEvent e,int i);
+    public interface Handler {
+        public void onItemClick(MotionEvent e, int i, View view);
     }
 
     public RecyclerItemClickListener(Context context, Handler handler) {
-        mhandler=handler;
+        mhandler = handler;
         mGestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapUp(MotionEvent e) {
@@ -29,17 +29,17 @@ public class RecyclerItemClickListener extends RecyclerView.SimpleOnItemTouchLis
 
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-        if(mGestureDetector.onTouchEvent(e)){
+        if (mGestureDetector.onTouchEvent(e)) {
             View childView = rv.findChildViewUnder(e.getX(), e.getY());
-            int i =rv.getChildAdapterPosition(childView);
-            Log.d(TAG, "onInterceptTouchEvent: "+i);
-            mhandler.onItemClick(e,i);
+            int i = rv.getChildAdapterPosition(childView);
+            Log.d(TAG, "onInterceptTouchEvent: " + i);
+            mhandler.onItemClick(e, i, childView);
             return true;
         }
         return false;
     }
 
     @Override
-    public void onTouchEvent(RecyclerView rv, MotionEvent e){
+    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
     }
 }

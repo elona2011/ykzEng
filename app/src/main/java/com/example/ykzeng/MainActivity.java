@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.ykzeng.recyclerView.MyAdapter;
 import com.example.ykzeng.recyclerView.RecyclerItemClickListener;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private static final int VERTICAL_ITEM_SPACE = 12;
     private static final String TAG = RecyclerItemClickListener.class.getName();
+    private ArrayList<HashMap<String, String>> wordList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +32,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         DBHelper db = new DBHelper(this);
-        ArrayList<HashMap<String, String>> wordList = db.getWords();
+        wordList = db.getWords();
 
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.Handler() {
             @Override
-            public void onItemClick(MotionEvent e, int i) {
-                if(i>=0){
-                    detail(i);
+            public void onItemClick(MotionEvent e, int i, View view) {
+                if (i >= 0) {
+                    String t=((TextView)view.findViewById(R.id.re_id)).getText().toString();
+                    detail(t);
                 }
             }
         }));
@@ -49,14 +52,24 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
     }
 
-    public void detail(int i) {
+    public void detail(String s) {
         Intent intent = new Intent(this, WordDetailActivity.class);
-        intent.putExtra(getString(R.string.recycler_item_pos),i);
+        intent.putExtra(getString(R.string.recycler_item_pos), s);
         startActivity(intent);
     }
 
     public void addNewWord(View view) {
         Intent intent = new Intent(this, NewWordActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        DBHelper db = new DBHelper(this);
+        wordList = db.getWords();
+        mAdapter = new MyAdapter(wordList);
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 }
