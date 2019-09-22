@@ -4,4 +4,9 @@
     <string name="word_add">Add</string>
     <string name="word_add_hint">Enter a new word</string>
     <string name="recycler_item_pos">recycler_item_pos</string>
+    <string name="menu_title_eng">Eng</string>
+    <string name="menu_title_task">Task</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

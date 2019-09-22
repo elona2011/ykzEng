@@ -1,61 +1,71 @@
 package com.example.ykzeng;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
-import com.example.ykzeng.recyclerView.MyAdapter;
 import com.example.ykzeng.recyclerView.RecyclerItemClickListener;
-import com.example.ykzeng.recyclerView.VerticalSpaceItemDecoration;
+import com.example.ykzeng.viewPage.FragmentTask;
+import com.example.ykzeng.viewPage.ViewPagerAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class MainActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private static final int VERTICAL_ITEM_SPACE = 12;
+public class MainActivity extends AppCompatActivity implements FragmentTask.OnFragmentInteractionListener {
     private static final String TAG = RecyclerItemClickListener.class.getName();
-    private ArrayList<HashMap<String, String>> wordList;
+    private ViewPager vp;
+    BottomNavigationView bv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DBHelper db = new DBHelper(this);
-        wordList = db.getWords();
-
-        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.Handler() {
-            @Override
-            public void onItemClick(MotionEvent e, int i, View view) {
-                if (i >= 0) {
-                    String t=((TextView)view.findViewById(R.id.re_id)).getText().toString();
-                    detail(t);
-                }
-            }
-        }));
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(VERTICAL_ITEM_SPACE));
-        mAdapter = new MyAdapter(wordList);
-        recyclerView.setAdapter(mAdapter);
+        initFragListener();
     }
 
-    public void detail(String s) {
-        Intent intent = new Intent(this, WordDetailActivity.class);
-        intent.putExtra(getString(R.string.recycler_item_pos), s);
-        startActivity(intent);
+    private void initFragListener() {
+        bv = findViewById(R.id.navigation);
+        vp = findViewById(R.id.vp);
+        bv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                switch (id) {
+                    case R.id.nav_eng:
+                        vp.setCurrentItem(0);
+                        break;
+                    case R.id.nav_task:
+                        vp.setCurrentItem(1);
+                        break;
+                    case R.id.nav_3:
+                        vp.setCurrentItem(2);
+                        break;
+                }
+                return false;
+            }
+        });
+        vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                bv.getMenu().getItem(position).setChecked(true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        vp.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
     }
 
     public void addNewWord(View view) {
@@ -66,10 +76,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        DBHelper db = new DBHelper(this);
-        wordList = db.getWords();
-        mAdapter = new MyAdapter(wordList);
-        recyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
+
+        ViewPagerAdapter ad = new ViewPagerAdapter(getSupportFragmentManager());
+        vp.setAdapter(ad);
+        ad.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
