@@ -5,19 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.ykzeng.recyclerView.RecyclerItemClickListener;
-import com.example.ykzeng.viewPage.FragmentTask;
+import com.example.ykzeng.task.main.FragTask;
 import com.example.ykzeng.viewPage.ViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements FragmentTask.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements
+        FragTask.OnFragmentInteractionListener {
     private static final String TAG = RecyclerItemClickListener.class.getName();
     private ViewPager vp;
+    private int vp_index;
     BottomNavigationView bv;
 
     @Override
@@ -36,14 +37,17 @@ public class MainActivity extends AppCompatActivity implements FragmentTask.OnFr
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 switch (id) {
-                    case R.id.nav_eng:
-                        vp.setCurrentItem(0);
-                        break;
                     case R.id.nav_task:
-                        vp.setCurrentItem(1);
+                        vp_index = 0;
+                        vp.setCurrentItem(vp_index);
+                        break;
+                    case R.id.nav_eng:
+                        vp_index = 1;
+                        vp.setCurrentItem(vp_index);
                         break;
                     case R.id.nav_3:
-                        vp.setCurrentItem(2);
+                        vp_index = 2;
+                        vp.setCurrentItem(vp_index);
                         break;
                 }
                 return false;
@@ -68,8 +72,13 @@ public class MainActivity extends AppCompatActivity implements FragmentTask.OnFr
         vp.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
     }
 
-    public void addNewWord(View view) {
-        Intent intent = new Intent(this, NewWordActivity.class);
+    public void addNewTask() {
+        Intent intent = new Intent(this, NewTaskActivity.class);
+        startActivity(intent);
+    }
+
+    public void addNewSentence() {
+        Intent intent = new Intent(this, NewSentenceActivity.class);
         startActivity(intent);
     }
 
@@ -77,13 +86,45 @@ public class MainActivity extends AppCompatActivity implements FragmentTask.OnFr
     protected void onResume() {
         super.onResume();
 
-        ViewPagerAdapter ad = new ViewPagerAdapter(getSupportFragmentManager());
-        vp.setAdapter(ad);
-        ad.notifyDataSetChanged();
+//        ViewPagerAdapter ad = new ViewPagerAdapter(getSupportFragmentManager());
+//        vp.setAdapter(ad);
+        vp.setCurrentItem(vp_index);
+//        ad.notifyDataSetChanged();
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_option, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.main_option_add) {
+            int pos = vp.getCurrentItem();
+            switch (pos) {
+                case 0:
+                    addNewTask();
+                    break;
+                case 1:
+                    addNewSentence();
+                    break;
+            }
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(String s) {
     }
 }

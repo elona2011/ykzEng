@@ -9,17 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".WordDetailActivity"></activity>
-        <activity
-            android:name=".NewWordActivity">
+        <activity android:name=".task.detail.TaskDetail">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".task.detail.ListActivity" />
+        </activity>
+        <activity android:name=".task.detail.ListActivity"
+            android:launchMode="singleTask">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".NewSentenceActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".WordDetailActivity" />
+        <activity android:name=".NewTaskActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:launchMode="singleTask"
-            android:name=".MainActivity">
+            android:name=".MainActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ykzeng.DBHelper;
+import com.example.ykzeng.db.DBHelper;
 import com.example.ykzeng.R;
 import com.example.ykzeng.WordDetailActivity;
 import com.example.ykzeng.recyclerView.MyAdapter;
@@ -27,13 +27,13 @@ public class FragmentEng extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag_eng,container,false);
+        View view = inflater.inflate(R.layout.frag_eng, container, false);
         recyclerView = view.findViewById(R.id.my_recycler_view);
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.Handler() {
             @Override
             public void onItemClick(MotionEvent e, int i, View view) {
                 if (i >= 0) {
-                    String t=((TextView)view.findViewById(R.id.re_id)).getText().toString();
+                    String t = ((TextView) view.findViewById(R.id.task_id)).getText().toString();
                     detail(t);
                 }
             }

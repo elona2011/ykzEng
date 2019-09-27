@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.ykzeng.db.DBHelper;
+
 import java.util.HashMap;
 
 public class WordDetailActivity extends AppCompatActivity {
@@ -32,19 +34,19 @@ public class WordDetailActivity extends AppCompatActivity {
         TextView tv_createTime = findViewById(R.id.tv_createTime);
         tv_createTime.setText(hm.get(DBHelper.KEY_CREATETIME));
         TextView tv_remember = findViewById(R.id.tv_remember);
-        tv_remember.setText(hm.get(DBHelper.KEY_REMEMBER) + "/" + hm.get(DBHelper.KEY_FORGET));
+//        tv_remember.setText(hm.get(DBHelper.KEY_REMEMBER) + "/" + hm.get(DBHelper.KEY_FORGET));
     }
 
     public void remember(View view) {
         DBHelper db = new DBHelper(this);
-        db.remember(id);
+//        db.remember(id);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
     public void forget(View view) {
         DBHelper db = new DBHelper(this);
-        db.forget(id);
+//        db.forget(id);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

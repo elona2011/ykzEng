@@ -1,12 +1,19 @@
 <resources>
+    <item name="tag_id" type="id"></item>
     <string name="app_name">ykzEng</string>
-    <string name="word_name">Word</string>
-    <string name="word_add">Add</string>
+    <string name="task_name">Task</string>
+    <string name="task_money">Money</string>
+    <string name="task_money_hint">Enter money, please</string>
+    <string name="task_add">Add</string>
+    <string name="task_main_date_default">yyyy-MM-dd</string>
+    <string name="task_main_money_default">0</string>
+    <string name="task_detail_name_default">task task</string>
+    <string name="task_detail_delete">delete</string>
     <string name="word_add_hint">Enter a new word</string>
+    <string name="sentence_add_hint">Enter a new sentence</string>
     <string name="recycler_item_pos">recycler_item_pos</string>
     <string name="menu_title_eng">Eng</string>
     <string name="menu_title_task">Task</string>
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

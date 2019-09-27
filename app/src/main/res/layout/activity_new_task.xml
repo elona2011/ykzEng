@@ -4,33 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewWordActivity">
+    tools:context=".NewTaskActivity">
 
     <EditText
-        android:id="@+id/new_example"
+        android:id="@+id/new_money"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="Enter a sentence"
-        android:inputType="textEmailAddress"
+        android:hint="@string/task_money_hint"
+        android:inputType="numberSigned|numberDecimal"
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/new_word_name" />
+        app:layout_constraintStart_toStartOf="@+id/new_task_name" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="Exp"
+        android:text="@string/task_money"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/new_word_name"
+        android:id="@+id/new_task_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -48,23 +48,23 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:text="@string/word_name"
+        android:text="@string/task_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/new_task_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:onClick="add"
-        android:text="@string/word_add"
+        android:text="@string/task_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_example" />
+        app:layout_constraintTop_toBottomOf="@+id/new_money" />
 </androidx.constraintlayout.widget.ConstraintLayout>

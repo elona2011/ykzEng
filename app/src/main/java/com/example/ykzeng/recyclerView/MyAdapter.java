@@ -22,9 +22,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView tv_remember;
         public MyViewHolder(View v) {
             super(v);
-            textView = v.findViewById(R.id.recycler_item);
-            tv_id = v.findViewById(R.id.re_id);
-            tv_remember=v.findViewById(R.id.re_remember);
+            textView = v.findViewById(R.id.task_date);
+            tv_id = v.findViewById(R.id.task_id);
+            tv_remember=v.findViewById(R.id.task_money);
         }
     }
 

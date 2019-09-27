@@ -4,36 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/task_item"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:background="#FFEB3B">
+    android:layout_height="100dp"
+    android:background="#E7E0A6">
 
     <TextView
         android:id="@+id/task_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="aaaaaa"
+        android:layout_marginStart="16dp"
+        android:text="@string/task_main_date_default"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/task_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:visibility="invisible"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="1dp" />
 
     <TextView
         android:id="@+id/task_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="1/1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/task_date" />
+        android:layout_marginEnd="16dp"
+        android:text="@string/task_main_money_default"
+        app:layout_constraintBaseline_toBaselineOf="@+id/task_date"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

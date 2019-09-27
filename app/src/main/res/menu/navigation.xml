@@ -2,18 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/nav_task"
+        android:icon="@android:drawable/checkbox_on_background"
+        android:title="@string/menu_title_task" />
+    <item
         android:id="@+id/nav_eng"
         android:icon="@android:drawable/btn_star_big_on"
         android:title="@string/menu_title_eng" />
 
     <item
-        android:id="@+id/nav_task"
-        android:icon="@android:drawable/checkbox_on_background"
-        android:title="@string/menu_title_task" />
-
-    <item
         android:id="@+id/nav_3"
         android:icon="@mipmap/ic_launcher"
-        android:title="@string/word_add" />
+        android:title="@string/task_add" />
 
 </menu>
